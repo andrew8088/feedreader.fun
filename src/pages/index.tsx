@@ -1,13 +1,20 @@
-export default function App() {
-  return <h1 className="bg-blue-100 text-sky-950"> hello world </h1>;
-}
-
-
-// import { type NextPage } from "next";
+import { type NextPage } from "next";
 // import Head from "next/head";
 // import Link from "next/link";
-//
-// import { api } from "@/utils/api";
+
+import { api } from "@/utils/api";
+
+const Home: NextPage = () => {
+  const hello = api.feed.hello.useQuery({ text: "from tRPC" });
+
+  return <h1 className="bg-blue-100 text-sky-950">
+    {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+  </h1>;
+}
+
+export default Home;
+
+
 //
 // const Home: NextPage = () => {
 //   const hello = api.feed.hello.useQuery({ text: "from tRPC" });
